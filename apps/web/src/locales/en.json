@@ -1,0 +1,72 @@
+{
+  "app": {
+    "title": "CRM Platform",
+    "welcome": "Welcome"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "email": "Email",
+    "password": "Password",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "role": "Role",
+    "loginButton": "Sign In",
+    "registerButton": "Sign Up",
+    "noAccount": "Don't have an account?",
+    "haveAccount": "Already have an account?",
+    "loginHere": "Login here",
+    "registerHere": "Register here"
+  },
+  "roles": {
+    "ADMIN": "Admin",
+    "MALE": "Male",
+    "FEMALE": "Female"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "content": "Content",
+    "users": "Users",
+    "createContent": "Create New Content"
+  },
+  "content": {
+    "title": "Title",
+    "description": "Description",
+    "body": "Body",
+    "visibility": "Visibility",
+    "isPublished": "Published",
+    "author": "Author",
+    "createdAt": "Created At",
+    "actions": "Actions",
+    "edit": "Edit",
+    "delete": "Delete",
+    "create": "Create",
+    "update": "Update",
+    "cancel": "Cancel",
+    "noContent": "No content to display"
+  },
+  "visibility": {
+    "PUBLIC": "Public",
+    "MALE_ONLY": "Male Only",
+    "FEMALE_ONLY": "Female Only",
+    "ADMIN_ONLY": "Admin Only"
+  },
+  "errors": {
+    "required": "Required field",
+    "invalidEmail": "Invalid email",
+    "passwordTooShort": "Password must be at least 8 characters",
+    "passwordRequirements": "Password must contain uppercase and number",
+    "loginFailed": "Login failed",
+    "registrationFailed": "Registration failed",
+    "loadingFailed": "Failed to load data"
+  },
+  "common": {
+    "loading": "Loading...",
+    "save": "Save",
+    "back": "Back",
+    "yes": "Yes",
+    "no": "No",
+    "confirm": "Confirm"
+  }
+}

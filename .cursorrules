@@ -1,0 +1,194 @@
+# Cursor Rules for CRM Platform
+
+## Project Overview
+This is a CRM-lite platform with role-based content visibility (RBAC). Built with:
+- Frontend: React + Vite + JavaScript (NO TypeScript)
+- Styling: SCSS with RTL support (Hebrew-first)
+- Backend: Node.js + Express + Prisma
+- Databases: PostgreSQL (primary) + MongoDB (minimal, for logs)
+- Testing: Vitest (unit) + Playwright (E2E)
+
+## Core Principles
+
+### Language & Framework
+- **JavaScript ONLY** - No TypeScript files (.ts, .tsx)
+- Use modern ES6+ features (destructuring, arrow functions, async/await)
+- Prefer functional components and hooks in React
+- Use PropTypes for type checking if needed
+
+### Code Style
+- Follow Airbnb ESLint config
+- Use Prettier for formatting (2-space indent, single quotes, semicolons)
+- File naming:
+  - Components: PascalCase (Button.jsx)
+  - Utils: camelCase (dateUtils.js)
+  - Constants: UPPER_SNAKE_CASE (API_ROUTES.js)
+  - Styles: kebab-case (auth-form.scss)
+
+### RTL & i18n
+- **Always** design for RTL-first (Hebrew is default)
+- Use `react-i18next` for all user-facing text
+- Add translations to both `/apps/web/src/locales/he.json` and `/apps/web/src/locales/en.json`
+- Test layout in RTL mode
+
+### RBAC (Role-Based Access Control)
+- Roles: ADMIN, MALE, FEMALE
+- Content visibility: PUBLIC, MALE_ONLY, FEMALE_ONLY, ADMIN_ONLY
+- **Always** check permissions on both API and UI
+- Use `requireRole` middleware on protected API routes
+- Use `ProtectedRoute` component on frontend routes
+- Use `filterContentByRole` middleware for content visibility
+
+### API Design
+- Follow REST conventions
+- Routes: `/api/v1/{resource}`
+- Use HTTP status codes correctly (200, 201, 400, 401, 403, 404, 500)
+- Validate input with Joi schemas
+- Return consistent error format: `{ error: "message", details?: [] }`
+
+### Database Access
+- **Prisma for PostgreSQL** - use `@prisma/client-postgres`
+- **Mongoose for MongoDB** - minimal usage for activity logs
+- Always use parameterized queries (Prisma handles this)
+- Create migrations for schema changes: `npm run db:migrate --workspace=apps/api`
+
+### Security
+- **Never** commit secrets (.env files in .gitignore)
+- Use bcrypt for password hashing (10 rounds)
+- JWT tokens: short-lived access tokens + long-lived refresh tokens
+- Validate and sanitize all user inputs
+- Use Helmet.js for security headers
+- Enable CORS only for trusted origins
+
+### Testing
+- Write unit tests for business logic and utilities
+- Write E2E tests for critical user flows (auth, content CRUD)
+- Use Vitest for unit tests (prefer `describe` + `it`)
+- Use Playwright for E2E (prefer `test.describe` + `test`)
+- Mock external dependencies in unit tests
+
+### Git Workflow
+- Commit messages: Conventional Commits format
+  - `feat:` new feature
+  - `fix:` bug fix
+  - `refactor:` code change without behavior change
+  - `docs:` documentation only
+  - `test:` adding or updating tests
+  - `chore:` maintenance tasks
+
+## File Structure Rules
+
+### When to Create New Files
+- Create new component file when reused 2+ times
+- Create new utility when function is used in 2+ places
+- Create new route file when adding a new resource
+- Create new validation schema when creating/updating models
+
+### When to Modify Existing Files
+- Add new route to existing route file if same resource
+- Add new component prop if it enhances existing functionality
+- Update translations in both he.json and en.json
+- Update Prisma schema for database changes
+
+## Common Tasks
+
+### Adding a New API Route
+1. Create route in `/apps/api/src/routes/{resource}.routes.js`
+2. Create controller in `/apps/api/src/controllers/{resource}.controller.js`
+3. Add validation schema in `/apps/api/src/validation/{resource}.validation.js`
+4. Import route in `/apps/api/src/routes/index.js`
+5. Test with Postman/curl
+
+### Adding a New React Page
+1. Create component in `/apps/web/src/pages/{PageName}.jsx`
+2. Add route in `/apps/web/src/App.jsx`
+3. Add translations to `he.json` and `en.json`
+4. Add navigation link in `Layout.jsx` if needed
+5. Add RBAC protection if needed
+
+### Database Changes
+1. Update Prisma schema: `/prisma/postgres/schema.prisma`
+2. Run migration: `npm run db:migrate --workspace=apps/api`
+3. Update seed file if needed: `/prisma/postgres/seed.js`
+4. Regenerate Prisma client: `npm run db:generate --workspace=apps/api`
+
+### Adding MongoDB Collection
+1. Create model in `/prisma/mongo/models/{ModelName}.js`
+2. Use Mongoose schema
+3. Import in code and use with `connectMongo()`
+
+## Performance Best Practices
+- Use React.memo for expensive components
+- Use useMemo/useCallback for expensive computations
+- Lazy load routes with React.lazy (when app grows)
+- Index database queries that are frequently used
+- Use pagination for large lists
+
+## Accessibility (a11y)
+- Use semantic HTML (header, nav, main, footer)
+- Add `aria-label` for icon-only buttons
+- Ensure keyboard navigation works
+- Test with screen reader (NVDA/JAWS)
+- Maintain color contrast ratios (WCAG AA)
+
+## Don't Do This
+- ❌ Don't use TypeScript
+- ❌ Don't create files without reading existing structure
+- ❌ Don't hardcode strings in components (use i18n)
+- ❌ Don't skip validation on user inputs
+- ❌ Don't expose sensitive data in API responses
+- ❌ Don't commit .env files
+- ❌ Don't use `var` (use `const` or `let`)
+- ❌ Don't use `==` (use `===`)
+- ❌ Don't mutate props or state directly
+
+## AI Assistant Instructions
+When helping with this codebase:
+1. **Always check existing patterns** before suggesting new approaches
+2. **Follow the RBAC system** - never bypass permission checks
+3. **Add i18n translations** when creating UI text
+4. **Write tests** for new features
+5. **Update documentation** when changing architecture
+6. **Ask for clarification** on business logic before implementing
+7. **Suggest refactoring** if code becomes repetitive
+
+## Quick Reference
+
+### Start Development
+```bash
+# Start databases
+docker-compose up -d
+
+# Run migrations and seed
+npm run db:migrate --workspace=apps/api
+npm run db:seed --workspace=apps/api
+
+# Start dev servers
+npm run dev
+```
+
+### Run Tests
+```bash
+# Unit tests
+npm test
+
+# E2E tests
+npm run test:e2e
+```
+
+### Database Management
+```bash
+# Prisma Studio (GUI)
+npm run db:studio --workspace=apps/api
+
+# Create migration
+npm run db:migrate --workspace=apps/api
+
+# Seed database
+npm run db:seed --workspace=apps/api
+```
+
+---
+
+**Last Updated**: 2025-12-31
+**For Questions**: See /docs/README.md

@@ -1,0 +1,72 @@
+{
+  "app": {
+    "title": "פלטפורמת CRM",
+    "welcome": "ברוכים הבאים"
+  },
+  "auth": {
+    "login": "התחברות",
+    "register": "הרשמה",
+    "logout": "התנתקות",
+    "email": "אימייל",
+    "password": "סיסמה",
+    "firstName": "שם פרטי",
+    "lastName": "שם משפחה",
+    "role": "תפקיד",
+    "loginButton": "כניסה",
+    "registerButton": "הרשמה",
+    "noAccount": "אין לך חשבון?",
+    "haveAccount": "יש לך כבר חשבון?",
+    "loginHere": "התחבר כאן",
+    "registerHere": "הירשם כאן"
+  },
+  "roles": {
+    "ADMIN": "מנהל",
+    "MALE": "גבר",
+    "FEMALE": "אישה"
+  },
+  "nav": {
+    "dashboard": "לוח בקרה",
+    "content": "תכנים",
+    "users": "משתמשים",
+    "createContent": "יצירת תוכן חדש"
+  },
+  "content": {
+    "title": "כותרת",
+    "description": "תיאור",
+    "body": "תוכן",
+    "visibility": "נראות",
+    "isPublished": "פורסם",
+    "author": "מחבר",
+    "createdAt": "נוצר בתאריך",
+    "actions": "פעולות",
+    "edit": "עריכה",
+    "delete": "מחיקה",
+    "create": "יצירה",
+    "update": "עדכון",
+    "cancel": "ביטול",
+    "noContent": "אין תכנים להצגה"
+  },
+  "visibility": {
+    "PUBLIC": "ציבורי",
+    "MALE_ONLY": "גברים בלבד",
+    "FEMALE_ONLY": "נשים בלבד",
+    "ADMIN_ONLY": "מנהלים בלבד"
+  },
+  "errors": {
+    "required": "שדה חובה",
+    "invalidEmail": "אימייל לא תקין",
+    "passwordTooShort": "הסיסמה חייבת להכיל לפחות 8 תווים",
+    "passwordRequirements": "הסיסמה חייבת להכיל אות גדולה ומספר",
+    "loginFailed": "התחברות נכשלה",
+    "registrationFailed": "הרשמה נכשלה",
+    "loadingFailed": "טעינת נתונים נכשלה"
+  },
+  "common": {
+    "loading": "טוען...",
+    "save": "שמירה",
+    "back": "חזרה",
+    "yes": "כן",
+    "no": "לא",
+    "confirm": "אישור"
+  }
+}

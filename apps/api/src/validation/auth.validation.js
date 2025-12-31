@@ -1,0 +1,26 @@
+const Joi = require('joi');
+
+const registerSchema = Joi.object({
+  email: Joi.string().email().required(),
+  password: Joi.string().min(8).pattern(/^(?=.*[A-Z])(?=.*\d)/).required().messages({
+    'string.pattern.base': 'Password must contain at least one uppercase letter and one number',
+  }),
+  firstName: Joi.string().min(2).max(50).required(),
+  lastName: Joi.string().min(2).max(50).required(),
+  role: Joi.string().valid('ADMIN', 'MALE', 'FEMALE').optional(),
+});
+
+const loginSchema = Joi.object({
+  email: Joi.string().email().required(),
+  password: Joi.string().required(),
+});
+
+const refreshSchema = Joi.object({
+  refreshToken: Joi.string().required(),
+});
+
+module.exports = {
+  registerSchema,
+  loginSchema,
+  refreshSchema,
+};
