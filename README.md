@@ -1,248 +1,252 @@
-# CRM Platform
+# Development Policy Library
 
-A modern, role-based CRM platform with content management capabilities. Built with React, Node.js, and PostgreSQL.
+**Reusable Cursor Rules + Claude Skills for Consistent Software Development**
 
-![Status](https://img.shields.io/badge/status-active-success.svg)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Last Updated](https://img.shields.io/badge/updated-2025--12--31-green.svg)
 
-## 🚀 Features
+## 🎯 What Is This?
 
-- **Role-Based Access Control (RBAC)**: Admin, Male, Female roles with granular permissions
-- **Content Management**: Create, edit, delete content with visibility controls
-- **RTL Support**: Hebrew-first design with full RTL layout
-- **Internationalization**: Hebrew and English languages
-- **JWT Authentication**: Secure token-based auth with refresh tokens
-- **Modern Stack**: React + Vite, Express, Prisma, PostgreSQL, MongoDB
-- **Comprehensive Testing**: Unit, integration, and E2E tests
-- **Docker Support**: Full local development environment
+A comprehensive, modular library of:
+- **Cursor Rules** (`.cursor/rules/`) — Development policies and coding standards
+- **Claude Skills** (`/skills/`) — Step-by-step execution guides
+- **Terminal & SSH Policy** — Safe automation guidelines
+- **Helper Scripts** — Apply policies to any project
 
-## 📋 Prerequisites
+**Portable**, **project-agnostic**, and designed for both **Cursor IDE** and **Claude Code CLI**.
 
-- Node.js 18+ and npm 9+
-- Docker and Docker Compose
-- Git
+## 🚀 Quick Start
 
-## 🏃 Quick Start
-
-### 1. Install Dependencies
-
+### Option 1: Use with Cursor IDE
 ```bash
-npm install
+# Clone this repository
+git clone https://github.com/yourorg/Policies-Instructions-and-Skills.git
+
+# Copy rules to your project
+cp -r Policies-Instructions-and-Skills/.cursor/rules /path/to/your-project/.cursor/
+
+# Cursor automatically loads rules!
 ```
 
-### 2. Start Databases
-
+### Option 2: Use with Claude Code CLI
 ```bash
-npm run docker:up
+# Reference in your conversation
+"Follow policies from /path/to/Policies-Instructions-and-Skills"
+
+# Or copy specific skills
+cat Policies-Instructions-and-Skills/skills/api-express/skill.md
+# [paste into Claude Code conversation]
 ```
 
-### 3. Configure Environment
-
+### Option 3: Use Helper Script
 ```bash
-cp apps/api/.env.example apps/api/.env
+# Automated copy with prompts
+./Policies-Instructions-and-Skills/scripts/apply-policies.sh /path/to/your-project
 ```
 
-### 4. Run Migrations & Seed
+## 📚 What's Included?
 
-```bash
-npm run db:migrate --workspace=apps/api
-npm run db:seed --workspace=apps/api
-```
+### Cursor Rules (Policies)
+10+ modular rules covering:
+- ✅ JavaScript/ES6+ code style
+- ✅ React UI, SCSS, accessibility
+- ✅ RTL & Hebrew-first design
+- ✅ Tables, forms, data patterns
+- ✅ Express API, REST conventions
+- ✅ Auth & RBAC (JWT, roles)
+- ✅ Prisma + PostgreSQL
+- ✅ Testing (unit, integration, E2E)
+- ✅ Git workflow & commits
+- ✅ Security & secrets handling
 
-### 5. Start Development Servers
+[Browse all rules →](./.cursor/rules/)
 
-```bash
-npm run dev
-```
+### Claude Skills (Execution)
+9+ skills for common tasks:
+- 🔧 UI components (React, SCSS, a11y)
+- 📊 Data tables (sortable, filterable)
+- 🌐 RTL/Hebrew implementation
+- 🔌 API endpoints (Express, REST)
+- 🔐 Auth & RBAC setup
+- 💾 Database operations (Prisma)
+- 🧪 Testing workflows
+- 🚀 CI/CD pipelines
+- 💻 Terminal & SSH operations
 
-Visit: **http://localhost:5173**
+[Browse all skills →](./skills/)
 
-### 6. Login with Test Accounts
+### Documentation
+- [Usage with Cursor](./docs/USAGE_WITH_CURSOR.md)
+- [Usage with Claude Code](./docs/USAGE_WITH_CLAUDE_CODE.md)
+- [Architecture of Policies](./docs/ARCHITECTURE_OF_POLICIES.md)
+- [Terminal & SSH Policy](./docs/ops/TERMINAL_SSH_POLICY.md)
+- [Contributing](./docs/CONTRIBUTING.md)
 
-- **Admin**: `admin@crm.local` / `Admin123!`
-- **Male User**: `male@crm.local` / `Male123!`
-- **Female User**: `female@crm.local` / `Female123!`
-
-## 📚 Documentation
-
-- **[Getting Started](/skills/getting-started.md)** - Complete setup guide
-- **[Architecture](/docs/ARCHITECTURE.md)** - System design and architecture
-- **[Development Guide](/docs/DEVELOPMENT.md)** - Development workflow
-- **[API Reference](/docs/API.md)** - API endpoints and examples
-- **[Skills](/skills/)** - Quick reference guides for common tasks
-- **[Cursor Rules](/.cursorrules)** - Coding standards and best practices
-
-## 🛠️ Tech Stack
-
-### Frontend
-- React 18
-- Vite
-- SCSS (RTL-first)
-- React Router v6
-- i18next
-- Axios
-
-### Backend
-- Node.js 18+
-- Express
-- Prisma (PostgreSQL ORM)
-- Mongoose (MongoDB)
-- JWT + Bcrypt
-- Winston (logging)
-
-### Databases
-- PostgreSQL 15 (primary)
-- MongoDB 6 (activity logs)
-
-### Testing
-- Vitest (unit tests)
-- React Testing Library
-- Playwright (E2E)
-
-### DevOps
-- Docker Compose
-- GitHub Actions CI/CD
-- ESLint + Prettier
-
-## 📂 Project Structure
+## 💡 How It Works
 
 ```
-crm-platform/
-├── apps/
-│   ├── api/              # Express API
-│   └── web/              # React frontend
-├── packages/
-│   └── shared/           # Shared utilities
-├── prisma/
-│   ├── postgres/         # PostgreSQL schema
-│   └── mongo/            # MongoDB models
-├── e2e/                  # Playwright tests
-├── skills/               # Quick guides
-├── docs/                 # Documentation
-└── docker-compose.yml    # Local dev environment
+┌────────────────────────────────────┐
+│       User Request                  │
+│  "Add user authentication"         │
+└────────────┬───────────────────────┘
+             │
+    ┌────────┴────────┐
+    ↓                 ↓
+  RULES            SKILLS
+(What/Why)       (How/Steps)
+    │                 │
+    │  Policy:        │  Execute:
+    │  - Use bcrypt   │  1. Install bcrypt
+    │  - JWT tokens   │  2. Create hash util
+    │  - RBAC roles   │  3. Add JWT logic
+    │                 │  4. Protect routes
+    │                 │  5. Write tests
+    └────────┬────────┘
+             ↓
+     ✅ Complete Implementation
 ```
 
-## 🧪 Testing
+**Rules** define constraints → **Skills** execute steps → **Result** follows both.
 
-```bash
-# Run all tests
-npm test
+## 📖 Examples
 
-# E2E tests
-npm run test:e2e
+### Example 1: Adding an API Endpoint
+```markdown
+# User to AI:
+"Add a new API endpoint for products"
 
-# E2E with UI
-npm run test:e2e:ui --workspace=e2e
+# AI process:
+1. Reads: .cursor/rules/050-api-express.md (policy)
+2. Follows: skills/api-express/skill.md (steps)
+3. Creates:
+   - routes/products.routes.js
+   - controllers/products.controller.js
+   - validation/products.validation.js
+   - Tests
+
+# Result: RESTful endpoint following all policies
 ```
 
-## 🔧 Common Commands
+### Example 2: RTL Layout
+```markdown
+# User to AI:
+"Make this component RTL-compatible"
 
-```bash
-# Development
-npm run dev              # Start both API and Web
-npm run dev:api          # Start API only
-npm run dev:web          # Start Web only
+[Pastes: skills/rtl-hebrew/skill.md]
 
-# Database
-npm run db:migrate --workspace=apps/api    # Run migrations
-npm run db:seed --workspace=apps/api       # Seed database
-npm run db:studio --workspace=apps/api     # Open Prisma Studio
+# AI process:
+1. Reads: .cursor/rules/030-rtl-hebrew.md
+2. Converts to logical CSS properties
+3. Handles mixed LTR/RTL content
+4. Adds i18n support
+5. Tests in RTL mode
 
-# Docker
-npm run docker:up        # Start databases
-npm run docker:down      # Stop databases
-
-# Code Quality
-npm run lint             # Run ESLint
-npm run format           # Format with Prettier
-
-# Build
-npm run build            # Build all apps
+# Result: Fully RTL-compatible component
 ```
 
-## 🔐 RBAC (Role-Based Access Control)
+## 🛠️ Repository Structure
 
-### Roles
-- **ADMIN**: Full access to all features and content
-- **MALE**: Access to male-specific + public content
-- **FEMALE**: Access to female-specific + public content
+```
+Policies-Instructions-and-Skills/
+├── .cursor/rules/          # Cursor Rules (policies)
+│   ├── 000-overview.md
+│   ├── 010-code-style-js.md
+│   ├── 020-ui-react-scss-a11y.md
+│   ├── 030-rtl-hebrew.md
+│   ├── 040-tables-forms.md
+│   ├── 050-api-express.md
+│   ├── 060-auth-rbac.md
+│   ├── 070-prisma-postgres.md
+│   ├── 080-testing-e2e.md
+│   ├── 090-git-workflow.md
+│   └── 100-security-secrets.md
+│
+├── skills/                 # Claude Skills (execution)
+│   ├── 00-template/
+│   ├── ui/
+│   ├── tables/
+│   ├── rtl-hebrew/
+│   ├── api-express/
+│   ├── auth-rbac/
+│   ├── prisma-postgres/
+│   ├── testing-e2e/
+│   ├── ci-cd/
+│   └── terminal-ssh-vps/
+│
+├── docs/                   # Documentation
+│   ├── USAGE_WITH_CURSOR.md
+│   ├── USAGE_WITH_CLAUDE_CODE.md
+│   ├── ARCHITECTURE_OF_POLICIES.md
+│   ├── CONTRIBUTING.md
+│   └── ops/
+│       └── TERMINAL_SSH_POLICY.md
+│
+├── scripts/                # Helper scripts
+│   ├── apply-policies.sh
+│   └── apply-policies.ps1
+│
+├── RULES_CURSOR.md        # Root rules summary
+├── README.md              # This file
+└── .editorconfig          # Editor configuration
+```
 
-### Content Visibility
-- **PUBLIC**: All authenticated users
-- **MALE_ONLY**: Male users + Admins
-- **FEMALE_ONLY**: Female users + Admins
-- **ADMIN_ONLY**: Admins only
+## 🌟 Key Features
 
-## 🌍 Internationalization
+### Hebrew-First & RTL
+All policies include explicit RTL support:
+- Logical CSS properties
+- Hebrew typography
+- Mixed content handling (emails, URLs in RTL context)
+- Bidirectional text markers
 
-Default language: **Hebrew (עברית)**
+### Autonomous AI Operation
+Rules instruct AI assistants to:
+- ✅ Proceed without endless questions
+- ✅ Use sensible defaults
+- ✅ Only ask for critical blockers
+- ✅ Document assumptions
 
-Supported languages:
-- Hebrew (he)
-- English (en)
+### Safety-First Terminal Operations
+Terminal & SSH Policy ensures:
+- ⚠️ Confirmation before destructive ops
+- 🔒 Never echo secrets
+- 📝 Redacted logging
+- ✅ Safe automation guidelines
 
-All UI text is managed through i18next with full RTL support.
-
-## 🚢 Deployment
-
-See **[Deployment Guide](/skills/deployment.md)** for detailed instructions.
-
-Quick options:
-- **Docker**: `docker-compose -f docker-compose.prod.yml up -d`
-- **Vercel** (Web) + **Railway** (API)
-- **Render** / **Heroku**
-
-## 🔒 Security
-
-- JWT-based authentication
-- Bcrypt password hashing (10 rounds)
-- Helmet.js security headers
-- CORS protection
-- Rate limiting (100 req/15min)
-- SQL injection prevention (Prisma)
-- XSS prevention (React escaping)
-
-## 📈 Future Enhancements
-
-- [ ] Redis for caching and sessions
-- [ ] File upload support (images, documents)
-- [ ] Email notifications (password reset, alerts)
-- [ ] Real-time updates (Socket.io)
-- [ ] Advanced analytics dashboard
-- [ ] Two-factor authentication (2FA)
-- [ ] Mobile app (React Native)
-- [ ] API rate limiting per user
-- [ ] Audit trail UI
+### Copy/Paste Friendly
+- **Rules**: Comprehensive reference (300-1000+ lines)
+- **Skills**: Concise execution (120-250 lines)
+- **Details**: Deep dives available on demand
 
 ## 🤝 Contributing
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'feat: add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+We welcome contributions! See [CONTRIBUTING.md](./docs/CONTRIBUTING.md) for:
+- Adding new rules
+- Creating new skills
+- Improving documentation
+- Reporting issues
 
-See **[Development Guide](/docs/DEVELOPMENT.md)** for more details.
+## 📄 License
 
-## 📝 License
+[MIT License](./LICENSE)
 
-[MIT License](LICENSE)
+## 🔗 Resources
+
+- [Cursor IDE](https://cursor.sh/) — AI-powered code editor
+- [Claude Code](https://github.com/anthropics/claude-code) — Claude CLI for development
+- [Conventional Commits](https://www.conventionalcommits.org/) — Commit message standard
 
 ## 🙏 Acknowledgments
 
-- Built with modern best practices
-- Follows Airbnb style guide
-- Inspired by real-world CRM systems
-- Designed for Hebrew-speaking communities
-
-## 📞 Support
-
-- **Documentation**: `/docs/` and `/skills/`
-- **Issues**: GitHub Issues
-- **Questions**: See `/docs/README.md`
+- Designed for real-world development workflows
+- Hebrew/RTL-first approach
+- Safety-conscious automation
+- Project-agnostic and portable
 
 ---
 
-**Built with ❤️ using React, Node.js, and PostgreSQL**
+**Built for developers by developers**
 
-**Last Updated**: 2025-12-31 | **Version**: 1.0.0
+**Questions?** See [docs/README.md](./docs/README.md) or open an issue.
+
+**Last Updated**: 2025-12-31
