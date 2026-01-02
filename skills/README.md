@@ -157,6 +157,27 @@ Template for creating new skills. Use this as a starting point for custom skills
 
 ---
 
+### [hostinger-vps-ops](./hostinger-vps-ops/skill.md)
+**Purpose**: Safely operate Hostinger VPS with ToS compliance and defensive security
+
+**When to use**:
+- Setting up or hardening Hostinger VPS
+- Deploying WordPress on Hostinger
+- Responding to malware detection notices
+- Configuring Cloudflare integration
+- Implementing security baseline
+- Backing up and monitoring VPS
+
+**Outputs**: Hardened VPS configuration, security scripts, compliance documentation, incident reports
+
+**⚠️ CRITICAL**:
+- Defensive security only (no offensive tools)
+- Hostinger ToS compliance required
+- AI agent safety protocols enforced
+- See [Hostinger AI Agent Safety](/docs/ops/HOSTINGER_AI_AGENT_SAFETY.md)
+
+---
+
 ## Skill Structure
 
 Each skill follows this consistent structure:

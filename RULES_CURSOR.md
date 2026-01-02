@@ -82,6 +82,15 @@ All rules are organized in [`.cursor/rules/`](./.cursor/rules/) for easy integra
 - HTTPS, secure cookies, CORS
 - Rate limiting and security headers
 - Logging without exposing secrets
+- Hosting provider compliance (Hostinger & similar)
+
+### [110 — Hostinger VPS Compliance](./.cursor/rules/110-hostinger-vps-compliance.md)
+- Hostinger Terms of Service compliance
+- VPS security requirements and suspension risk model
+- Defensive security only (no offensive tools)
+- AI agent safety protocols
+- Malware prevention and response
+- Provider communication guidelines
 
 ## 🚀 Quick Start
 
@@ -192,14 +201,21 @@ Rules are designed to be:
 │   ├── prisma-postgres/
 │   ├── testing-e2e/
 │   ├── ci-cd/
-│   └── terminal-ssh-vps/
+│   ├── terminal-ssh-vps/
+│   └── hostinger-vps-ops/
 ├── docs/                   # Documentation
 │   ├── USAGE_WITH_CURSOR.md
 │   ├── USAGE_WITH_CLAUDE_CODE.md
 │   ├── ARCHITECTURE_OF_POLICIES.md
 │   ├── CONTRIBUTING.md
+│   ├── PROMPTS_LIBRARY.md
 │   └── ops/
-│       └── TERMINAL_SSH_POLICY.md
+│       ├── TERMINAL_SSH_POLICY.md
+│       ├── HOSTINGER_VPS_RUNBOOK.md
+│       ├── HOSTINGER_SECURITY_BASELINE_UBUNTU.md
+│       ├── HOSTINGER_MALWARE_RESPONSE.md
+│       ├── HOSTINGER_WORDPRESS_HARDENING.md
+│       └── HOSTINGER_AI_AGENT_SAFETY.md
 ├── scripts/                # Helper scripts
 │   ├── apply-policies.sh
 │   └── apply-policies.ps1

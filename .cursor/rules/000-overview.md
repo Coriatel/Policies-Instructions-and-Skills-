@@ -37,6 +37,7 @@ Rules are numbered for logical loading order:
 - **080-testing-e2e.md** — Unit, integration, and E2E testing policies
 - **090-git-workflow.md** — Git commit style, branching, PR conventions
 - **100-security-secrets.md** — Security best practices, secrets handling, logging
+- **110-hostinger-vps-compliance.md** — Hostinger VPS ToS compliance, AI agent safety
 
 ## Core Philosophy
 
