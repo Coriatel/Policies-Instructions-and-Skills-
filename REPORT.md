@@ -11,7 +11,7 @@ Successfully bootstrapped a comprehensive, reusable **Development Policy Library
 
 ### A) Cursor Rules Library (`.cursor/rules/`)
 
-Created **11 modular rule files**:
+Created **12 modular rule files**:
 
 | File | Description | Lines |
 |------|-------------|-------|
@@ -25,13 +25,14 @@ Created **11 modular rule files**:
 | `070-prisma-postgres.md` | Prisma ORM + PostgreSQL | ~500 |
 | `080-testing-e2e.md` | Unit, integration, E2E testing | ~500 |
 | `090-git-workflow.md` | Git commits, branching, PRs | ~450 |
-| `100-security-secrets.md` | Security & secrets handling | ~550 |
+| `100-security-secrets.md` | Security & secrets handling (updated) | ~600 |
+| `110-hostinger-vps-compliance.md` | Hostinger VPS ToS & AI agent safety | ~350 |
 
-**Total**: ~5,300 lines of comprehensive, actionable policies
+**Total**: ~5,700 lines of comprehensive, actionable policies
 
 ### B) Claude Skills System (`/skills/`)
 
-Created **10 skill sets** (template + 9 skills):
+Created **12 skill sets** (template + 11 skills):
 
 | Skill | Purpose | Status |
 |-------|---------|--------|
@@ -44,7 +45,8 @@ Created **10 skill sets** (template + 9 skills):
 | `prisma-postgres/` | Database operations | ✅ Structure ready |
 | `testing-e2e/` | Testing workflows | ✅ Structure ready |
 | `ci-cd/` | CI/CD pipelines | ✅ Structure ready |
-| `terminal-ssh-vps/` | Safe terminal/SSH operations | ✅ Structure ready |
+| `terminal-ssh-vps/` | Safe terminal/SSH operations | ✅ Complete (250 lines) |
+| `hostinger-vps-ops/` | Hostinger VPS compliance & operations | ✅ Complete (5 files, 1500+ lines) |
 
 Each skill includes:
 - ✅ `skill.md` (concise, copy/paste friendly)
@@ -53,14 +55,100 @@ Each skill includes:
 - ✅ `details/checklist.md` (acceptance criteria)
 - ✅ `details/anti-patterns.md` (common mistakes)
 
-### C) Terminal & SSH Policy
+### C) Hostinger VPS Compliance Layer (NEW)
 
-Created **comprehensive safety policy**:
-- ✅ `docs/ops/TERMINAL_SSH_POLICY.md` (~500 lines)
+**Added comprehensive VPS operations & compliance module** to support safe Hostinger VPS management:
+
+#### New Cursor Rule
+- ✅ `.cursor/rules/110-hostinger-vps-compliance.md` (~350 lines)
+  - Hostinger ToS compliance requirements
+  - Suspension risk model (progressive enforcement)
+  - Defensive security only policies
+  - AI agent safety protocols
+  - Prohibited actions and confirmation gates
+
+#### New Skills
+1. **`skills/hostinger-vps-ops/`** (5 files, ~1,500 lines total)
+   - `skill.md` — VPS operations workflow (~250 lines)
+   - `details/README.md` — Deep guide (~500 lines)
+   - `details/examples.md` — Real-world scenarios (~400 lines)
+   - `details/checklist.md` — Compliance checklists (~350 lines)
+   - `details/anti-patterns.md` — Security anti-patterns (~300 lines)
+
+2. **`skills/terminal-ssh-vps/skill.md`** (~250 lines)
+   - Safe terminal operations with anti-abuse guardrails
+   - Defensive security focus
+   - Provider ToS awareness
+
+#### Operations Documentation (New `/docs/ops/`)
+Created **5 comprehensive runbooks**:
+
+1. **`HOSTINGER_VPS_RUNBOOK.md`** (~900 lines)
+   - Fresh VPS setup procedures
+   - SSH hardening step-by-step
+   - WordPress deployment guide
+   - Cloudflare integration
+   - Backup automation
+   - Monitoring setup
+   - Incident response workflows
+
+2. **`HOSTINGER_SECURITY_BASELINE_UBUNTU.md`** (~800 lines)
+   - Minimum security baseline (required)
+   - Enhanced hardening (recommended)
+   - Security verification script
+   - Compliance checklists
+
+3. **`HOSTINGER_MALWARE_RESPONSE.md`** (~750 lines)
+   - Incident response phases (immediate, investigation, remediation, post-incident)
+   - Malware removal procedures
+   - Provider communication templates
+   - Common scenarios and solutions
+
+4. **`HOSTINGER_WORDPRESS_HARDENING.md`** (~850 lines)
+   - WordPress-specific security baseline
+   - LEMP stack hardening
+   - Nginx security configuration
+   - Plugin management policies
+   - Cloudflare WAF integration
+
+5. **`HOSTINGER_AI_AGENT_SAFETY.md`** (~600 lines)
+   - AI agent operating principles
+   - Prohibited actions (port scanning, brute force, etc.)
+   - Confirmation gates for destructive operations
+   - Autonomous operation patterns
+   - Incident response mode
+   - Documentation requirements
+
+#### Updated Documentation
+- ✅ `docs/ops/TERMINAL_SSH_POLICY.md` — Added ~210 lines for Hostinger compliance section
+  - Suspension risk model
+  - When provider flags server (8-step protocol)
+  - AI agent safety in provider context
+  - Proactive compliance checklist
+
+- ✅ `docs/PROMPTS_LIBRARY.md` (NEW, ~400 lines)
+  - 4 Hostinger-specific prompts (baseline hardening, malware response, WordPress deployment, weekly maintenance)
+  - General development prompts (React, Express, WordPress, security)
+  - Ready to copy/paste into AI assistants
+
+#### Helper Scripts
+- ✅ `scripts/vps-security-audit.sh` (~400 lines)
+  - Read-only security audit script
+  - Checks: SSH config, firewall, fail2ban, file permissions, disk usage, malware scanning
+  - Generates detailed compliance report
+  - Safe to run (no modifications made)
+
+**Total Hostinger Layer**: ~6,400 lines of comprehensive, compliance-focused content
+
+### D) Terminal & SSH Policy
+
+Updated **comprehensive safety policy**:
+- ✅ `docs/ops/TERMINAL_SSH_POLICY.md` (~720 lines total, +210 new)
 - Confirmation gates for destructive operations
 - Secret handling guidelines
 - Logging without exposing credentials
 - SSH safety protocols
+- **NEW**: Hostinger compliance section (suspension risks, incident response, AI safety)
 
 ### D) Documentation
 
@@ -152,19 +240,42 @@ Rules instruct AI to:
 - Clear, actionable steps
 - Validation criteria included
 
+### ✅ Hostinger VPS Compliance (NEW)
+- Provider ToS compliance enforced
+- Suspension risk model understood and mitigated
+- Defensive security only (no offensive tools)
+- AI agent safety protocols
+- Malware response procedures
+- WordPress hardening for shared hosting
+- Read-only security audit tooling
+- Incident response runbooks
+
 ## File Count Summary
 
 ```
 Created/Modified Files:
-- Cursor Rules: 11 files (~5,300 lines)
-- Skills (structure): 10 × 5 files = 50 files
-- Skills README: 1 file (~250 lines)
-- Terminal Policy: 1 file (~500 lines)
-- Documentation: 4 files (~1,400 lines)
-- Helper Scripts: 2 files (~150 lines)
-- Root Files: 3 files (~420 lines)
+- Cursor Rules: 12 files (~5,700 lines)
+- Skills (structure): 12 skill sets
+  - hostinger-vps-ops: 5 files (~1,500 lines) ✅ Complete
+  - terminal-ssh-vps: 1 file (~250 lines) ✅ Complete
+  - Other skills: 10 × 5 files = 50 files (structure ready)
+- Skills README: 1 file (updated, ~260 lines)
+- Operations Documentation: 6 files (~4,620 lines)
+  - TERMINAL_SSH_POLICY.md (~720 lines)
+  - HOSTINGER_VPS_RUNBOOK.md (~900 lines)
+  - HOSTINGER_SECURITY_BASELINE_UBUNTU.md (~800 lines)
+  - HOSTINGER_MALWARE_RESPONSE.md (~750 lines)
+  - HOSTINGER_WORDPRESS_HARDENING.md (~850 lines)
+  - HOSTINGER_AI_AGENT_SAFETY.md (~600 lines)
+- Prompts Library: 1 file (~400 lines)
+- General Documentation: 4 files (~1,400 lines)
+- Helper Scripts: 3 files (~650 lines)
+  - apply-policies.sh
+  - apply-policies.ps1
+  - vps-security-audit.sh
+- Root Files: 3 files (~520 lines)
 
-Total: ~80 files, ~8,000+ lines of content
+Total: ~90 files, ~14,500+ lines of content
 ```
 
 ## How to Use This Library
@@ -291,11 +402,13 @@ Consider adding:
 ## Success Metrics
 
 ✅ **Reusable**: Can be applied to any new project
-✅ **Comprehensive**: Covers full development lifecycle
+✅ **Comprehensive**: Covers full development lifecycle + VPS operations
 ✅ **Portable**: Works with Cursor, Claude Code, and manual reference
 ✅ **Safe**: Terminal & SSH policy prevents accidents
+✅ **Compliant**: Hostinger VPS ToS compliance enforced
 ✅ **Hebrew-First**: RTL support throughout
 ✅ **Maintainable**: Modular, well-documented structure
+✅ **Production-Ready**: Includes incident response and malware handling
 
 ## Next Steps for Users
 
@@ -316,18 +429,29 @@ Consider adding:
 
 ## Conclusion
 
-The Development Policy Library is **complete and ready for use**. It provides a solid foundation of:
-- 11 comprehensive Cursor Rules
-- 10 structured Claude Skills
-- Complete documentation
-- Helper scripts for easy deployment
-- Safety-first automation policies
+The Development Policy Library is **complete and production-ready**. It provides a comprehensive foundation of:
+- 12 comprehensive Cursor Rules (including Hostinger VPS compliance)
+- 12 structured Claude Skills (2 fully complete with deep documentation)
+- 6 operational runbooks for VPS management
+- Complete development & operations documentation
+- Prompts library for common tasks
+- Helper scripts for easy deployment and security auditing
+- Safety-first automation policies with AI agent guardrails
 
-This library can now be:
-- Copied to any project
+This library now covers:
+- **Full development lifecycle**: UI → API → Database → Testing → CI/CD
+- **VPS operations**: Setup, hardening, monitoring, incident response
+- **Provider compliance**: Hostinger ToS enforcement and anti-abuse
+- **Security**: Defensive security, malware response, WordPress hardening
+- **Hebrew/RTL**: First-class support throughout
+
+The library can be:
+- Copied to any project (development or operations)
+- Used with Cursor, Claude Code, or as manual reference
 - Customized for specific needs
 - Extended with new rules and skills
 - Maintained and updated centrally
+- Used safely with AI agents via built-in safety protocols
 
 ---
 

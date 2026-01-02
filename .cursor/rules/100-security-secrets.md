@@ -532,16 +532,60 @@ app.use((err, req, res, next) => {
 
 ---
 
+## Hosting Provider Compliance (Hostinger & Similar)
+
+When deploying to VPS hosting (Hostinger, DigitalOcean, Linode, etc.):
+
+### Never Commit Secrets to VPS
+```bash
+# ❌ DON'T: Store secrets in git on VPS
+git add .env  # NO! Even in private repos
+
+# ✅ DO: Use .env files that are gitignored
+echo ".env" >> .gitignore
+git add .gitignore
+```
+
+### VPS-Specific Security Requirements
+```bash
+# ✅ DO: Secure wp-config.php (if WordPress)
+sudo chmod 440 /var/www/html/wp-config.php
+
+# ✅ DO: Verify no secrets in web-accessible files
+sudo grep -r "password\|secret\|api_key" /var/www/html/ --exclude-dir=node_modules
+
+# ❌ DON'T: Echo secrets in terminal/logs
+echo $DATABASE_PASSWORD  # NO! Visible in shell history
+```
+
+### Hostinger ToS Compliance Notes
+
+**CRITICAL**: Hosting providers like Hostinger enforce strict anti-abuse policies. Your code and operations must:
+- ✅ Never include malware, backdoors, or shells (even for testing)
+- ✅ Never use offensive security tools (port scanners, brute forcers)
+- ✅ Never bypass security controls or tamper with logs
+- ✅ Use defensive security only (fail2ban, firewalls, malware scanning)
+
+**See**: [110-hostinger-vps-compliance.md](./110-hostinger-vps-compliance.md) for complete compliance requirements.
+
+**AI Agent Note**: When operating on Hostinger VPS, follow [AI Agent Safety Protocol](/docs/ops/HOSTINGER_AI_AGENT_SAFETY.md).
+
+---
+
 **Related Skills**:
 - `/skills/auth-rbac/` — Authentication security
 - `/skills/api-express/` — API security patterns
 - `/skills/terminal-ssh-vps/` — Safe SSH operations
+- `/skills/hostinger-vps-ops/` — Hostinger VPS operations & compliance
 
 **See Also**:
 - [060-auth-rbac.md](./060-auth-rbac.md)
 - [050-api-express.md](./050-api-express.md)
 - [090-git-workflow.md](./090-git-workflow.md)
+- [110-hostinger-vps-compliance.md](./110-hostinger-vps-compliance.md)
 
 **Resources**:
 - [OWASP Top 10](https://owasp.org/www-project-top-ten/)
 - [Node.js Security Best Practices](https://nodejs.org/en/docs/guides/security/)
+- [Terminal & SSH Policy](/docs/ops/TERMINAL_SSH_POLICY.md)
+- [Hostinger VPS Runbook](/docs/ops/HOSTINGER_VPS_RUNBOOK.md)
