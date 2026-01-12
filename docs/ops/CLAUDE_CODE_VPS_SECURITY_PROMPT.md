@@ -18,7 +18,7 @@ This document contains a ready-to-use prompt for Claude Code CLI running on your
 ## Complete Security Setup Prompt
 
 ```
-You are running on a Hostinger VPS server. Your task is to review and implement the security configuration based on the organization's security policies.
+You are running on a Hostinger VPS server. Your task is to FIRST audit and report what is already correctly configured, then identify gaps and suggest fixes.
 
 ## Reference Documents
 
@@ -27,50 +27,105 @@ Review these security policies from the Policies-Instructions-and-Skills reposit
 - https://github.com/Coriatel/Policies-Instructions-and-Skills-/blob/claude/bootstrap-repo-setup-pnxsB/docs/ops/HOSTINGER_SECURITY_BASELINE_UBUNTU.md
 - https://github.com/Coriatel/Policies-Instructions-and-Skills-/blob/claude/bootstrap-repo-setup-pnxsB/docs/ops/HOSTINGER_AI_AGENT_SAFETY.md
 
-## Tasks
+## Tasks (IN THIS ORDER - Audit First!)
 
-1. **Audit Current Configuration**
-   - Check UFW status and rules
-   - Check Fail2Ban status and jails
-   - Review SSH configuration
-   - Check for automatic updates
-   - Verify PostgreSQL is bound to localhost
+### Phase 1: Audit What's Already Done (DO THIS FIRST)
+Run these checks and report current status:
 
-2. **Report Findings**
-   - List what is correctly configured
-   - List what needs to be fixed
-   - Identify any security gaps
+1. **Firewall (UFW)**
+   ```bash
+   sudo ufw status verbose
+   ```
 
-3. **Implement Fixes** (with confirmation for each)
-   - Configure missing firewall rules
-   - Set up Fail2Ban if not configured
-   - Enable automatic security updates
-   - Create security audit script
+2. **Fail2Ban**
+   ```bash
+   sudo systemctl status fail2ban
+   sudo fail2ban-client status
+   sudo fail2ban-client status sshd 2>/dev/null
+   ```
 
-## Required Ports (verify these are open)
+3. **SSH Configuration**
+   ```bash
+   grep -E "^PasswordAuthentication|^PermitRootLogin|^PubkeyAuthentication" /etc/ssh/sshd_config
+   ```
 
-| Port | Service | Status |
-|------|---------|--------|
-| 22 | SSH | Required |
-| 80 | HTTP | Required |
-| 443 | HTTPS | Required |
-| 4000 | API Server | Required for Flow-Control |
+4. **Automatic Updates**
+   ```bash
+   sudo systemctl status unattended-upgrades
+   dpkg -l | grep unattended-upgrades
+   ```
+
+5. **Database Binding**
+   ```bash
+   sudo ss -tulpn | grep -E "5432|3306"
+   ```
+
+6. **Running Services**
+   ```bash
+   pm2 status 2>/dev/null || echo "PM2 not installed"
+   sudo systemctl list-units --type=service --state=running | head -20
+   ```
+
+7. **SSL Certificates**
+   ```bash
+   sudo certbot certificates 2>/dev/null || echo "Certbot not installed"
+   ```
+
+8. **Listening Ports**
+   ```bash
+   sudo ss -tulpn | grep LISTEN
+   ```
+
+### Phase 2: Report Findings (Clear Summary)
+Present a clear status table showing what's ALREADY WORKING:
+
+| Component | Status | Details |
+|-----------|--------|---------|
+| UFW Firewall | ✅/❌ | [list open ports] |
+| Fail2Ban | ✅/❌ | [jails active, bans count] |
+| SSH Hardening | ✅/❌ | [password auth on/off] |
+| Auto Updates | ✅/❌ | [enabled/disabled] |
+| Database | ✅/❌ | [localhost only?] |
+| SSL/TLS | ✅/❌ | [cert status] |
+| PM2 | ✅/❌ | [processes running] |
+
+### Phase 3: Compare Against Requirements
+Check against required configuration:
+
+**Required Ports:**
+| Port | Service | Required | Currently Open |
+|------|---------|----------|----------------|
+| 22 | SSH | Yes | ? |
+| 80 | HTTP | Yes | ? |
+| 443 | HTTPS | Yes | ? |
+| 4000 | API Server | Yes | ? |
+
+### Phase 4: Identify Gaps (What's Missing)
+List ONLY what needs to be fixed:
+- Missing configurations
+- Incorrect settings
+- Security improvements needed
+
+### Phase 5: Suggest Fixes (ONLY AFTER Phases 1-4)
+For each gap:
+- Explain what needs to be done
+- Show the exact command
+- **WAIT for my confirmation before executing**
 
 ## Constraints
 
-- Always ask for confirmation before making changes
+- DO NOT make any changes until you complete the full audit (Phases 1-4)
+- Report what's WORKING CORRECTLY first - acknowledge good configuration
+- Always ask for confirmation before making ANY changes
 - Do not modify SSH configuration that could lock out access
 - Create backups before modifying config files
 - Document all changes made
-- Follow the AI Agent Safety Protocol
 
 ## Output Format
 
-Provide:
-1. Current security status summary
-2. Recommended actions with risk assessment
-3. Step-by-step implementation (awaiting confirmation for each)
-4. Final verification checklist
+1. **✅ What's Already Configured Correctly** (acknowledge existing good setup)
+2. **⚠️ What Needs Attention** (gaps to fix)
+3. **📋 Recommended Actions** (with commands, awaiting my approval)
 ```
 
 ---
