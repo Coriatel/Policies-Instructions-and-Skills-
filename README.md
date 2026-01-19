@@ -80,6 +80,7 @@ cat Policies-Instructions-and-Skills/skills/api-express/skill.md
 - [Usage with Claude Code](./docs/USAGE_WITH_CLAUDE_CODE.md)
 - [Architecture of Policies](./docs/ARCHITECTURE_OF_POLICIES.md)
 - [Terminal & SSH Policy](./docs/ops/TERMINAL_SSH_POLICY.md)
+- [Agent Instructions (Codex/Claude/Gemini)](./docs/ops/agent-instructions/)
 - [Contributing](./docs/CONTRIBUTING.md)
 
 ## 💡 How It Works
