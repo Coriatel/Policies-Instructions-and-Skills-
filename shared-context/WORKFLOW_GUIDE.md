@@ -16,6 +16,7 @@
 5. [Update Frequency Rules](#update-frequency-rules)
 6. [Cross-Agent Coordination](#cross-agent-coordination)
 7. [Decision Flowcharts](#decision-flowcharts)
+8. [Archival System](#archival-system)
 
 ---
 
@@ -325,6 +326,102 @@ docker logs --tail 20 <container-name>
 | **Knowledge preservation** | Errors and solutions documented, not lost |
 | **Continuity** | Any agent can pick up where another left off |
 | **Visibility** | Progress tracked even if terminal closes |
+
+---
+
+## Archival System
+
+### Overview
+
+The archival system keeps active files clean by moving old items to archives after ~2 months.
+
+```
+/root/ai-progress/
+├── archives/                    # Quarterly archives
+│   ├── 2026-Q1.md              # Archive summary + links
+│   ├── sessions/               # Archived session logs
+│   └── progress/               # Archived progress files
+├── progress-history/           # Bi-weekly progress snapshots
+├── session_logs/               # Current session logs (< 2 months old)
+├── checkpoints/                # 10-minute auto-checkpoints
+└── scripts/
+    ├── archive-old-items.sh    # Monthly archive script
+    └── rotate-progress.sh      # Bi-weekly rotation script
+```
+
+### Bi-Weekly Progress Rotation
+
+**Schedule:** 1st and 15th of each month at 3 AM (automatic via cron)
+
+**What happens:**
+1. Current `WEEKLY_PROGRESS.md` is saved to `/root/ai-progress/progress-history/`
+2. New progress file is created with summary of previous period
+3. Old file's key stats are preserved in "Previous Period Summary" section
+
+**Manual trigger:**
+```bash
+/root/ai-progress/scripts/rotate-progress.sh          # Only if > 14 days old
+/root/ai-progress/scripts/rotate-progress.sh --force  # Force rotation
+```
+
+### Monthly Archive (2-Month Rule)
+
+**Schedule:** 1st of each month at 4 AM (automatic via cron)
+
+**What gets archived (items > 60 days old):**
+- Completed tasks from AI_JOBS.md (moved to "Completed Jobs" section)
+- Resolved errors from ERROR_LOG.md
+- Old session logs from `/root/ai-progress/session_logs/`
+- Old progress files from `/root/ai-progress/progress-history/`
+
+**Archive format:** Quarterly files (`2026-Q1.md`, `2026-Q2.md`, etc.)
+
+**What stays in archive:**
+- Summary table of what was archived and when
+- Extracted summaries from old sessions
+- Full archived files in subdirectories
+
+**Manual trigger:**
+```bash
+/root/ai-progress/scripts/archive-old-items.sh
+```
+
+### Archive Summary in AI_JOBS.md
+
+After archiving, a note is added to AI_JOBS.md:
+```markdown
+## 📦 Archive History
+
+- **[2026-03-01] Archived:** 15 tasks, 8 errors, 12 sessions → See `/root/ai-progress/archives/2026-Q1.md`
+```
+
+### Finding Archived Information
+
+1. **Check archive summary:** Look for `## 📦 Archive History` section in AI_JOBS.md
+2. **Browse archives:** `/root/ai-progress/archives/`
+3. **Search archived sessions:** `grep -r "keyword" /root/ai-progress/archives/sessions/`
+4. **View progress history:** `ls -la /root/ai-progress/progress-history/`
+
+### Cron Schedule Summary
+
+| Job | Schedule | Script |
+|-----|----------|--------|
+| Progress update | Every 10 min | `/usr/local/bin/ai-progress-update.sh` |
+| Database backup | Daily 2 AM | `/usr/local/bin/backup-databases.sh` |
+| Progress rotation | 1st & 15th, 3 AM | `/root/ai-progress/scripts/rotate-progress.sh` |
+| Archive old items | 1st monthly, 4 AM | `/root/ai-progress/scripts/archive-old-items.sh` |
+
+### Agent Responsibilities for Archival
+
+**DO:**
+- Let automatic archival handle old items
+- Check `## 📦 Archive History` for recently archived items
+- Search archives if looking for old information
+
+**DON'T:**
+- Manually delete completed tasks (let archive script handle it)
+- Manually move session logs (automated)
+- Modify archive files directly
 
 ---
 
