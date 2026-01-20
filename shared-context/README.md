@@ -12,8 +12,12 @@ At session start, read these files in order:
 
 1. **GLOBAL_RULES.md** - Universal rules all agents must follow
 2. **VPS_STRUCTURE.md** - Container and directory map
-3. **progress/WEEKLY_PROGRESS.md** - Current week's activity and handoff notes
-4. **/root/AI_JOBS.md** - Pending tasks and job tracker
+3. **WORKFLOW_GUIDE.md** - How and when to use each file (first time / reference)
+4. **progress/WEEKLY_PROGRESS.md** - Current week's activity and handoff notes
+5. **progress/ERROR_LOG.md** - Recent errors to avoid repeating
+6. **/root/AI_JOBS.md** - Pending tasks and job tracker
+
+For detailed workflow instructions, see **WORKFLOW_GUIDE.md**.
 
 ---
 
@@ -26,6 +30,7 @@ shared-context/
 ├── VPS_STRUCTURE.md             # Container/directory documentation
 ├── DOCS_INDEX.md                # Where to find everything
 ├── AUTONOMOUS_PROTOCOL.md       # Safe autonomous execution rules
+├── WORKFLOW_GUIDE.md            # Comprehensive workflow instructions
 │
 ├── containers/                  # Per-container documentation
 │   ├── flow-control.md          # Flow Control app + DB + Auth
@@ -41,6 +46,7 @@ shared-context/
 │
 └── progress/                    # Progress tracking
     ├── WEEKLY_PROGRESS.md       # Auto-updated every 10 minutes
+    ├── ERROR_LOG.md             # Centralized error tracking
     └── archive/                 # Past weeks
 ```
 
@@ -68,4 +74,4 @@ shared-context/
 
 ---
 
-**Last Updated:** 2026-01-20
+**Last Updated:** 2026-01-20 (Added WORKFLOW_GUIDE.md and ERROR_LOG.md)

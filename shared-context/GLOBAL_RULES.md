@@ -15,6 +15,7 @@ Every session, perform these steps:
    /root/policies-repo/shared-context/GLOBAL_RULES.md (this file)
    /root/policies-repo/shared-context/VPS_STRUCTURE.md
    /root/policies-repo/shared-context/progress/WEEKLY_PROGRESS.md
+   /root/policies-repo/shared-context/progress/ERROR_LOG.md
    ```
 
 2. **Check pending work:**
@@ -28,7 +29,11 @@ Every session, perform these steps:
    docker ps --format "table {{.Names}}\t{{.Status}}"
    ```
 
-4. **Identify scope:** Determine which container(s) your task affects
+4. **Check for active errors:** Review ERROR_LOG.md for unresolved issues
+
+5. **Identify scope:** Determine which container(s) your task affects
+
+For detailed workflow instructions, see **WORKFLOW_GUIDE.md**.
 
 ---
 
@@ -37,6 +42,7 @@ Every session, perform these steps:
 ### During Work
 - Update `/root/AI_JOBS.md` when starting or completing tasks
 - Log significant findings in `progress/WEEKLY_PROGRESS.md`
+- **Log errors IMMEDIATELY** in `progress/ERROR_LOG.md` when encountered
 - Document issues encountered
 
 ### Every 10 Minutes (Automated)
@@ -46,6 +52,14 @@ Every session, perform these steps:
 ### At Session End
 - Mark completed tasks in AI_JOBS.md
 - Note any handoff items in WEEKLY_PROGRESS.md
+- Update ERROR_LOG.md with resolution status for any errors worked on
+
+### Error Logging (Required)
+When you encounter an error:
+1. Add to Active Errors table in ERROR_LOG.md
+2. Create detailed entry with context, cause, and solution attempts
+3. Update status when resolved
+4. Move to Resolved Archive when fully fixed
 
 ---
 
