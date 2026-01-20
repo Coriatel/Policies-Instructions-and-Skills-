@@ -1,7 +1,7 @@
 # Weekly Progress Report
 
 **Week:** 2026-W04 (Jan 20-26)
-**Last Updated:** 2026-01-20 07:55:09 UTC
+**Last Updated:** 2026-01-20 08:10:01 UTC
 **Auto-Update:** Every 10 minutes via cron
 
 ---
@@ -20,6 +20,10 @@
 - [08:00] Claude: Wrote core documentation (GLOBAL_RULES, VPS_STRUCTURE, DOCS_INDEX, AUTONOMOUS_PROTOCOL)
 - [08:00] Claude: Created container documentation for all 6 service groups
 - [08:00] Claude: Setting up progress tracking system
+- [08:20] Claude: Added ERROR_LOG.md for centralized error tracking
+- [08:20] Claude: Added WORKFLOW_GUIDE.md with comprehensive workflow instructions
+- [08:20] Claude: Updated GLOBAL_RULES.md with error logging protocol
+- [08:20] Claude: Updated all AI tool configs (CLAUDE.md, Codex, Gemini)
 
 ---
 
@@ -60,6 +64,9 @@ vtiger-secure-db        Up 19 hours     2026-01-20 08:00
 - Wrote GLOBAL_RULES.md, VPS_STRUCTURE.md, DOCS_INDEX.md, AUTONOMOUS_PROTOCOL.md
 - Created container documentation (6 files)
 - Set up progress tracking system with 10-minute cron
+- Added ERROR_LOG.md for centralized error tracking across all AI agents
+- Added WORKFLOW_GUIDE.md with session workflows, file responsibility matrix, decision flowcharts
+- Updated all AI tool configs to reference new files
 
 ---
 
@@ -72,7 +79,9 @@ vtiger-secure-db        Up 19 hours     2026-01-20 08:00
 ## Handoff Notes
 
 *For next agent session:*
-- Shared context system is now active
+- Shared context system is now complete with ERROR_LOG.md and WORKFLOW_GUIDE.md
+- Read WORKFLOW_GUIDE.md for detailed session start/per-prompt/end procedures
+- Log any errors immediately to progress/ERROR_LOG.md
 - Check AI_JOBS.md for pending tasks
 - Container documentation is in shared-context/containers/
 
