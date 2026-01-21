@@ -1,7 +1,7 @@
 # Weekly Progress Report
 
 **Week:** 2026-W04 (Jan 20-26)
-**Last Updated:** 2026-01-21 08:35:25 UTC
+**Last Updated:** 2026-01-21 09:40:01 UTC
 **Auto-Update:** Every 10 minutes via cron
 
 ---
@@ -10,7 +10,7 @@
 
 | Agent | Started | Last Activity | Working On |
 |-------|---------|---------------|------------|
-| Codex | 2026-01-21 | 08:35 | Monthly security update run + DNS status update |
+| Codex | 2026-01-21 | 09:39 | DNS verification for crm.merkazneshama.co.il |
 
 ---
 
@@ -30,7 +30,7 @@
 - [07:40] Claude: Task 1.4 resolved - base44 refs in minified JS have no functional impact
 - [08:28] Codex: Created monthly security update script + cron schedule (backup then updates)
 - [08:33] Codex: Monthly security update completed (backup + 4 packages updated; no reboot required)
-- [08:35] Codex: CRMVTIGER DNS record ready for crm.merkazneshama.co.il
+- [09:38] Codex: DNS lookup for crm.merkazneshama.co.il still not resolving; old domain serves HTTPS
 
 ### Yesterday (2026-01-20)
 
@@ -80,7 +80,7 @@ vtiger-secure-db        Up 19 hours     2026-01-20 08:00
 ### Tuesday (2026-01-21)
 - ✅ Task 1.4: Flow Control dashboard verified working
 - ✅ Task 11: Set policies-repo default branch to main
-- ✅ CRMVTIGER: Caddy configured and DNS ready for crm.merkazneshama.co.il
+- ✅ CRMVTIGER: Caddy configured for crm.merkazneshama.co.il (DNS verification pending)
 - ✅ Monthly security updates: /usr/local/bin/monthly-security-update.sh + /etc/cron.d/monthly-security-update
 - ✅ Monthly security update run completed (backup + updates; no reboot required)
 
@@ -97,7 +97,7 @@ vtiger-secure-db        Up 19 hours     2026-01-20 08:00
 
 ## Notes & Issues
 
-- None currently
+- DNS for crm.merkazneshama.co.il not resolving yet (checked 2026-01-21 09:38 UTC)
 
 ---
 
@@ -115,6 +115,6 @@ vtiger-secure-db        Up 19 hours     2026-01-20 08:00
 ## Next Priorities
 
 1. Continue with any pending AI_JOBS.md tasks
-2. Verify crm.merkazneshama.co.il resolves and serves HTTPS
+2. Re-check DNS propagation for crm.merkazneshama.co.il and verify HTTPS
 3. Monitor container health
 4. Regular progress updates
