@@ -178,6 +178,43 @@ Template for creating new skills. Use this as a starting point for custom skills
 
 ---
 
+### [n8n-automation](./n8n-automation/skill.md)
+**Purpose**: Build and maintain n8n workflows (webhooks, schedules, queues) with validation, idempotency, and alerting.
+
+**When to use**:
+- Creating or extending automations in n8n
+- Adding webhook or scheduled jobs that call external APIs/DBs/queues
+- Adding error handling, retries, and alerts to existing n8n flows
+- Migrating manual glue logic into n8n
+
+**Outputs**: n8n workflow export JSON, notes/tests file with credentials used (names only) and alerting details
+
+---
+
+### [prd-creator](./prd-creator/skill.md)
+**Purpose**: Create Product Requirements Documents with clear scope, requirements, and success metrics.
+
+**When to use**:
+- Defining a new feature or workflow change
+- Aligning stakeholders on scope and outcomes
+- Preparing handoff to design or engineering
+
+**Outputs**: PRD markdown file with goals, requirements, and rollout plan
+
+---
+
+### [skill-maker](./skill-maker/skill.md)
+**Purpose**: Create or update skills in this library and keep indexes in sync.
+
+**When to use**:
+- Authoring a new skill
+- Updating an existing skill after new learnings
+- Standardizing a repeatable workflow
+
+**Outputs**: New or updated skill directory and updated index files
+
+---
+
 ## Skill Structure
 
 Each skill follows this consistent structure:

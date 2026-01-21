@@ -36,6 +36,17 @@ Customer Relationship Management (CRM) system. Two instances:
 | `/root/vtiger/custom/` | Custom scripts |
 
 ---
+## Hebrew + RTL
+
+Main instance includes Hebrew language pack and RTL overrides:
+- vlayout (legacy): `/root/vtiger/custom/Header.tpl` + `/root/vtiger/custom/rtl.css`
+- v7 UI: `/root/vtiger/custom/HeaderV7.tpl` + `/root/vtiger/custom/rtl-v7.css`
+
+Mounted paths:
+- `HeaderV7.tpl` -> `/var/www/html/layouts/v7/modules/Vtiger/Header.tpl`
+- `rtl-v7.css` -> `/var/www/html/layouts/v7/skins/rtl.css`
+
+---
 
 ## Common Commands
 

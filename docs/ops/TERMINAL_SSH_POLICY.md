@@ -4,93 +4,50 @@
 
 This document defines safe operating procedures for terminal commands, SSH operations, and VPS management when working autonomously or with AI assistants.
 
-## Core Principles
+## Execution Policy
 
-### 1. Confirmation Gates
-**Always ask for confirmation before**:
-- Deleting data (`rm -rf`, `DROP DATABASE`, etc.)
-- Force operations (`git push --force`, `docker system prune`)
-- Modifying production systems
-- Operations involving secrets/credentials
-- Irreversible actions
+**Run commands without asking for confirmation** except for:
+- Commands that delete data permanently (rm -rf, DROP DATABASE, TRUNCATE)
+- Commands that modify critical system files (/etc/passwd, /etc/shadow, /etc/sudoers)
+- Commands that could cause service outages in production
+- Commands that expose sensitive credentials
+- Irreversible operations (force push, database drops, hard resets)
+- System modifications (reboot, shutdown, ufw disable)
 
-### 2. Never Echo Secrets
+For all other commands: **Execute immediately without prompting**.
+
+## Safe Operations (No Confirmation Needed)
+
+### Read Operations
 ```bash
-# ❌ DON'T
-echo "API_KEY=sk_live_abc123"
-cat .env
-echo $DATABASE_PASSWORD
-
-# ✅ DO
-# Keep secrets in files, never print them
-```
-
-### 3. Logging Without Secrets
-```bash
-# ❌ DON'T log commands with secrets
-echo "Running: mysql -u admin -p'secretpass' ..."
-
-# ✅ DO redact sensitive data
-echo "Running: mysql -u admin -p'[REDACTED]' ..."
-```
-
-## Allowed Commands (No Confirmation Needed)
-
-### Safe Read Operations
-```bash
-ls, ls -la
-cat <file>
-head, tail
-pwd
-whoami
-df -h
-free -m
-ps aux
-top, htop
+ls, cat, head, tail, less, pwd, whoami
+df -h, free -m, ps aux, top, htop
 git status, git log, git diff
-npm list, npm outdated
-docker ps, docker images
+docker ps, docker images, docker logs
 systemctl status <service>
+npm list, npm outdated
 ```
 
 ### Safe Write Operations
 ```bash
-mkdir <dir>
-touch <file>
-cp <file> <backup>  # creating backups
-git add, git commit
-npm install <package>
+mkdir, touch, cp <file> <backup>
+git add, git commit, git push (to feature branches)
+npm install (local packages)
 ```
 
 ## Prohibited Without Confirmation
 
 ### Destructive Operations
-```bash
-rm -rf
-rm -r
-DROP DATABASE
-DROP TABLE
-TRUNCATE
-docker system prune
-docker volume prune
-git push --force
-git reset --hard
-```
+- `rm -rf`, `rm -r`, `rmdir` (recursive/bulk)
+- `DROP DATABASE`, `DROP TABLE`, `TRUNCATE`
+- `docker system prune`, `docker volume prune`
+- `git push --force`, `git reset --hard`
 
-### Production Operations
-```bash
-systemctl stop <production-service>
-systemctl restart <production-service>
-pm2 delete
-pm2 restart <production-app>
-```
-
-### Bulk Operations
-```bash
-find . -name "*.js" -delete
-git clean -fd
-npm uninstall <multiple packages>
-```
+### System Changes
+- `sudo` commands that modify system config
+- `chmod`, `chown` on system files
+- `systemctl stop/restart <production-service>`
+- `reboot`, `shutdown`, `ufw disable`
 
 ## SSH Usage Guidelines
 
