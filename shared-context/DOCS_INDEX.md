@@ -1,7 +1,7 @@
 # Documentation Index
 
 **Purpose:** Quick reference for finding documentation and configuration files.
-**Last Updated:** 2026-01-20
+**Last Updated:** 2026-01-21
 
 ---
 
@@ -147,6 +147,9 @@
 | Caddy Config | `/etc/caddy/Caddyfile` |
 | Backup Script | `/usr/local/bin/backup-databases.sh` |
 | Backup Log | `/var/log/backups.log` |
+| Monthly Security Update Script | `/usr/local/bin/monthly-security-update.sh` |
+| Monthly Security Update Log | `/var/log/monthly-update.log` |
+| Monthly Security Update Cron | `/etc/cron.d/monthly-security-update` |
 | Progress Script | `/usr/local/bin/ai-progress-update.sh` |
 | Progress Log | `/var/log/ai-progress.log` |
 | Docker Compose | Per-service directories |

@@ -330,6 +330,19 @@ sudo dpkg-reconfigure --priority=low unattended-upgrades
 sudo systemctl status unattended-upgrades
 ```
 
+### Monthly Scheduled Updates (Backup + Upgrade)
+
+This VPS also uses a monthly security update script that performs a full backup before running updates.
+
+```bash
+# Script + schedule
+sudo ls -la /usr/local/bin/monthly-security-update.sh
+sudo cat /etc/cron.d/monthly-security-update
+
+# Log
+sudo tail -n 200 /var/log/monthly-update.log
+```
+
 ---
 
 ## Application-Specific Ports
